@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jennifer Pyle",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "googleapis": "^59.0.0"
   }
 }
