@@ -44,10 +44,10 @@ module.exports.getAuthURL = async () => {
     scope: SCOPES,
   });
   return {
+    statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
-    statusCode: 200,
     body: JSON.stringify({
       authUrl: authUrl,
     }),
@@ -77,10 +77,10 @@ module.exports.getAccessToken = async (event) => {
     .then((token) => {
       // Respond with OAuth token
       return {
+        statusCode: 200,
         headers: {
           'Access-Control-Allow-Origin': '*',
         },
-        statusCode: 200,
         body: JSON.stringify(token),
       };
     })
@@ -89,6 +89,9 @@ module.exports.getAccessToken = async (event) => {
       console.error(err);
       return {
         statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
         body: JSON.stringify(err),
       };
     });
@@ -98,6 +101,7 @@ module.exports.getCalendarEvents = async (event) => {
   const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
   const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
   oAuth2Client.setCredentials({ access_token });
+
   /**
    * This calendar method will get a list of events from the “fullstackwebdev” Google calendar
    * using oAuth2Client for authentication.
@@ -122,17 +126,20 @@ module.exports.getCalendarEvents = async (event) => {
       )
       .then((results) => {
         return {
+          statusCode: 200,
           headers: {
             'Access-Control-Allow-Origin': '*',
           },
-          statusCode: 200,
           body: JSON.stringify({ events: results.data.items }),
         };
       })
       .catch((err) => {
-        console.err(err);
+        console.error(err);
         return {
           statusCode: 500,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
           body: JSON.stringify(err),
         };
       });
