@@ -107,41 +107,40 @@ module.exports.getCalendarEvents = async (event) => {
    * using oAuth2Client for authentication.
    */
   return new Promise((resolve, reject) => {
-    calendar.events
-      .list(
-        {
-          calendarId: calendar_id,
-          auth: oAuth2Client,
-          timeMin: new Date().toISOString(),
-          singleEvents: true,
-          orderBy: 'startTime',
-        },
-        (err, response) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(response);
-          }
+    calendar.events.list(
+      {
+        calendarId: calendar_id,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: 'startTime',
+      },
+      (err, response) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(response);
         }
-      )
-      .then((results) => {
-        return {
-          statusCode: 200,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-          body: JSON.stringify({ events: results.data.items }),
-        };
-      })
-      .catch((err) => {
-        console.error(err);
-        return {
-          statusCode: 500,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-          body: JSON.stringify(err),
-        };
-      });
-  });
+      }
+    );
+  })
+    .then((results) => {
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify({ events: results.data.items }),
+      };
+    })
+    .catch((err) => {
+      console.error(err);
+      return {
+        statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify(err),
+      };
+    });
 };
