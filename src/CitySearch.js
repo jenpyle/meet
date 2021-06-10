@@ -16,13 +16,22 @@ like typing on the keyboard
     }); /**filter the state of suggestions and use the result as the state’s new value */
     this.setState({ query: value, suggestions });
   };
+
+  handleItemClicked = (suggestion) => {
+    this.setState({
+      query: suggestion,
+    });
+  };
+
   render() {
     return (
       <div className="CitySearch">
         <input type="text" className="city" value={this.state.query} onChange={this.handleInputChanged} />
         <ul className="suggestions">
           {this.state.suggestions.map((suggestion) => (
-            <li key={suggestion}>{suggestion}</li>
+            <li key={suggestion} onClick={() => this.handleItemClicked(suggestion)}>
+              {suggestion}
+            </li>
           ))}
           <li key="all">
             <b>See all cities</b>

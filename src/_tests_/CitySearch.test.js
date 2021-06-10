@@ -40,11 +40,19 @@ describe('<CitySearch /> component', () => {
     CitySearchWrapper.setState({ query: '', suggestions: [] }); //states get emptied
     CitySearchWrapper.find('.city').simulate('change', {
       target: { value: 'Berlin' },
-    }); //changing value of query to Berlin
+    }); //in CitySearch .city class is the query, and is changing value of query to Berlin
     const query = CitySearchWrapper.state('query');
     const filteredLocations = locations.filter((location) => {
       return location.toUpperCase().indexOf(query.toUpperCase()) > -1;
     }); //filtering location prop against the state of query
     expect(CitySearchWrapper.state('suggestions')).toEqual(filteredLocations);
+  });
+  test('selecting a suggestion should change query state', () => {
+    CitySearchWrapper.setState({
+      query: 'Berlin',
+    });
+    const suggestions = CitySearchWrapper.state('suggestions');
+    CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
+    expect(CitySearchWrapper.state('query')).toBe(suggestions[0]);
   });
 });
