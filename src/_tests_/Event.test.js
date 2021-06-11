@@ -38,7 +38,7 @@ describe('<Event /> component', () => {
     expect(EventWrapper.find('.detailsButton')).toHaveLength(1);
   });
 
-  test("Clicking 'Show Details' should change state of showDetails to true", () => {
+  test("Clicking 'Show Details' should change state of showDetails to TRUE", () => {
     EventWrapper.setState({
       showDetails: false,
     });
@@ -46,7 +46,7 @@ describe('<Event /> component', () => {
     expect(EventWrapper.state('showDetails')).toBe(true);
   });
 
-  test('Render MORE Event details when showDetails is true', () => {
+  test('Render MORE Event details when showDetails is TRUE', () => {
     EventWrapper.setState({
       showDetails: true,
     });
@@ -55,7 +55,7 @@ describe('<Event /> component', () => {
     );
   });
 
-  test("Clicking 'Hide Details' should change state of showDetails to false", () => {
+  test("Clicking 'Hide Details' should change state of showDetails to FALSE", () => {
     EventWrapper.setState({
       showDetails: true,
     });
