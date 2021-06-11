@@ -46,7 +46,10 @@ describe('<Event /> component', () => {
     expect(EventWrapper.state('showDetails')).toBe(true);
   });
 
-  test('Render MORE Event details', () => {
+  test('Render MORE Event details when showDetails is true', () => {
+    EventWrapper.setState({
+      showDetails: true,
+    });
     expect(EventWrapper.find('.Event .moreDetails').text()).toBe(
       'About Event\n' + eventData.htmlLink + '\n' + eventData.description + '\nContact: ' + eventData.organizer.email
     );
@@ -60,18 +63,11 @@ describe('<Event /> component', () => {
     expect(EventWrapper.state('showDetails')).toBe(false);
   });
 
-  test('When showDetails is TRUE, renders more event details', () => {
-    EventWrapper.setState({
-      showDetails: true,
-    });
-    expect(EventWrapper.find('.moreDetails')).toHaveLength(1);
-  });
-
   test('When Show Details is FALSE, do NOT render more details', () => {
     EventWrapper.setState({
       showDetails: false,
     });
-    expect(EventWrapper.find('.moreDetails')).toHaveLength(0);
+    expect(EventWrapper.find('.Event .moreDetails')).toHaveLength(0);
   });
 
   test('When Show Details is clicked, buttonLabel is set to "Hide Details"', () => {
