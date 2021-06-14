@@ -16,7 +16,7 @@ describe('<NumberOfEvents /> component', () => {
   test('Number of events box accepts "number" type as user input', () => {
     expect(NumberOfEventsWrapper.find('.numEventInput').prop('type')).toBe('number');
   });
-  test('renders text input correctly', () => {
+  test('renders text input correctly from state', () => {
     const numberEvents = NumberOfEventsWrapper.state('numberEvents');
     expect(NumberOfEventsWrapper.find('.numEventInput').prop('value')).toBe(numberEvents);
   });

@@ -8,7 +8,7 @@ describe('<CitySearch /> component', () => {
   let locations, CitySearchWrapper;
   beforeAll(() => {
     locations = extractLocations(mockData);
-    CitySearchWrapper = shallow(<CitySearch locations={locations} />); //locations being passed to CitySearch component
+    CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => {}} />); //locations being passed to CitySearch component
   });
   test('render text input', () => {
     expect(CitySearchWrapper.find('.city')).toHaveLength(1);

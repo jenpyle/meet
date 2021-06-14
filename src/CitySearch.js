@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getEvents, extractLocations } from './api';
 
 class CitySearch extends Component {
   state = {
@@ -21,6 +22,7 @@ like typing on the keyboard
     this.setState({
       query: suggestion,
     });
+    this.props.updateEvents(suggestion);
   };
 
   render() {
@@ -33,7 +35,7 @@ like typing on the keyboard
               {suggestion}
             </li>
           ))}
-          <li key="all">
+          <li key="all" onClick={() => this.handleItemClicked('all')}>
             <b>See all cities</b>
           </li>
         </ul>
