@@ -1,6 +1,8 @@
 // The entry point of my build
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App'; //importing App.js
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
