@@ -34,7 +34,7 @@ then uses the encoded code to get your token
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
-    'https://1hjwzwtdhj.execute-api.us-west-1.amazonaws.com/dev/api/token' + '/' + encodeCode
+    'https://1hjwzwtdhj.execute-api.us-west-1.amazonaws.com/dev/api/token/' + encodeCode
   )
     .then((res) => {
       return res.json();
@@ -72,7 +72,7 @@ export const getEvents = async () => {
 
   if (token) {
     removeQuery();
-    const url = 'https://1hjwzwtdhj.execute-api.us-west-1.amazonaws.com/dev/api/get-events' + '/' + token;
+    const url = 'https://1hjwzwtdhj.execute-api.us-west-1.amazonaws.com/dev/api/get-events/' + token;
     const result = await axios.get(url);
     if (result.data) {
       var locations = extractLocations(result.data.events);
@@ -97,7 +97,7 @@ export const getAccessToken = async () => {
       const { authUrl } = results.data;
       return (window.location.href = authUrl);
     }
-    return code && getAccessToken(code);
+    return code && getToken(code);
   }
   return accessToken;
 };
