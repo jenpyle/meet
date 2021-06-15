@@ -36,7 +36,7 @@ input[type='number'] {
   height: 38px;
 }
 
-.city {
+/* .city {
   width: 250px;
 }
 
@@ -44,7 +44,7 @@ input[type='number'] {
   display: flex;
   flex-direction: column;
   flex-basis: 300px;
-  max-width: 300px;
+
   margin: auto;
   position: relative;
 }
@@ -74,8 +74,21 @@ input[type='number'] {
 
 .suggestions > li:hover {
   background-color: #bcdcdb;
+} */
+
+button.list-group-item.list-group-item-action {
+  width: 50%;
+  align-self: flex-end;
 }
 
+@media all and (max-width: 767px) {
+  button.list-group-item.list-group-item-action {
+    width: 100%;
+    align-self: center;
+  }
+}
+
+/*Everything between this comment and the above commented code is written by me*/
 .event {
   padding: 10px 10px 35px;
   margin-bottom: 10px;

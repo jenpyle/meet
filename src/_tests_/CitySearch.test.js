@@ -31,9 +31,9 @@ describe('<CitySearch /> component', () => {
   test('render list of suggestions correctly', () => {
     CitySearchWrapper.setState({ suggestions: locations });
     const suggestions = CitySearchWrapper.state('suggestions');
-    expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(suggestions.length + 1); //plus 1 due to additional "see all cities" option
+    expect(CitySearchWrapper.find('.suggestions .list-item')).toHaveLength(suggestions.length + 1); //plus 1 due to additional "see all cities" option
     for (let i = 0; i < suggestions.length; i += 1) {
-      expect(CitySearchWrapper.find('.suggestions li').at(i).text()).toBe(suggestions[i]); //rendered text is checked to ensure its also been taken from state
+      expect(CitySearchWrapper.find('.suggestions .list-item').at(i).text()).toBe(suggestions[i]); //rendered text is checked to ensure its also been taken from state
     }
   });
   test('suggestion list match the query when changed', () => {
@@ -52,7 +52,21 @@ describe('<CitySearch /> component', () => {
       query: 'Berlin',
     });
     const suggestions = CitySearchWrapper.state('suggestions');
-    CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
+    CitySearchWrapper.find('.suggestions .list-item').at(0).simulate('click');
     expect(CitySearchWrapper.state('query')).toBe(suggestions[0]);
+  });
+  test('selecting CitySearch input reveals the suggestions list', () => {
+    CitySearchWrapper.find('.city').simulate('focus');
+    expect(CitySearchWrapper.state('showSuggestions')).toBe(true);
+    expect(CitySearchWrapper.find('.suggestions').prop('style')).not.toEqual({ display: 'none' });
+  });
+  test('Selecting a suggestion should hide the suggestions list', () => {
+    CitySearchWrapper.setState({
+      query: 'Berlin',
+      showSuggestions: undefined,
+    });
+    CitySearchWrapper.find('.suggestions .list-item').at(0).simulate('click');
+    expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
+    expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' });
   });
 });

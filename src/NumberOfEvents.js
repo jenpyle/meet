@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 
 class NumberOfEvents extends Component {
   state = {
@@ -18,9 +17,6 @@ class NumberOfEvents extends Component {
     const { numberEvents } = this.state;
     return (
       <div className="NumberOfEvents">
-        {/* <Container className="NumberOfEvents">
-          <Row>
-            <Col> */}
         <Form>
           <Form.Group as={Row} controlId="formPlaintextPassword">
             <Form.Label column md="6">
@@ -37,10 +33,6 @@ class NumberOfEvents extends Component {
             </Col>
           </Form.Group>
         </Form>
-        {/* </Col>
-          </Row>
-        </Container> */}
-        {/* <input type="number" className="numEventInput" value={numberEvents} onChange={this.handleInputChanged} /> */}
       </div>
     );
   }
