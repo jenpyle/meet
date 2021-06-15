@@ -18,7 +18,7 @@ describe('<NumberOfEvents /> component', () => {
   });
   test('renders text input correctly from state', () => {
     const numberEvents = NumberOfEventsWrapper.state('numberEvents');
-    expect(NumberOfEventsWrapper.find('.numEventInput').prop('value')).toBe(numberEvents);
+    expect(NumberOfEventsWrapper.find('.numEventInput').prop('defaultValue')).toBe(numberEvents);
   });
   //simulating changing the event.target.value from the user inputting 5
   test('change state when number input changes', () => {

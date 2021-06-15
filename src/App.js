@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
+import { Container, Row, Col } from 'react-bootstrap';
 
 class App extends Component {
   state = {
@@ -12,15 +13,24 @@ class App extends Component {
   };
 
   componentDidMount() {
+    /**
+   * load events when the app loads.
+    make the API call and save the initial data to state
+   */
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
+        /**look at componentWillUnmount */
         this.setState({ events, locations: extractLocations(events) });
       }
     });
   }
 
   componentWillUnmount() {
+    /*
+    to fix issue with unmounting before getEvents API call is finished, we
+    use this boolean to update the state only if this.mounted is true
+    */
     this.mounted = false;
   }
 
@@ -35,11 +45,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <EventList events={this.state.events} />
-        <NumberOfEvents />
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <div className="App">
+              <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+              <NumberOfEvents />
+              <EventList events={this.state.events} />
+            </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
