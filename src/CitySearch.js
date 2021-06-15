@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { getEvents, extractLocations } from './api';
-import { Form, Button } from 'react-bootstrap';
-import { Container, Row, Col, ListGroup } from 'react-bootstrap';
+import { Form, Row, Col, ListGroup } from 'react-bootstrap';
 
 class CitySearch extends Component {
   state = {
@@ -51,36 +49,6 @@ like typing on the keyboard
             </Col>
           </Form.Group>
         </Form>
-        {/* <Form>
-          <Form.Group as={Row}>
-            <Col>
-              <Row>
-                <Form.Label column>Search for events near you:</Form.Label>
-
-                <Form.Control
-                  type="text"
-                  className="city"
-                  placeholder="Search cities"
-                  value={this.state.query}
-                  onChange={this.handleInputChanged}
-                  onFocus={() => {
-                    this.setState({ showSuggestions: true });
-                  }}
-                />
-              </Row>
-            </Col>
-          </Form.Group>
-        </Form> */}
-        {/* <input
-          type="text"
-          className="city"
-          placeholder="Search cities"
-          value={this.state.query}
-          onChange={this.handleInputChanged}
-          onFocus={() => {
-            this.setState({ showSuggestions: true });
-          }}
-        /> */}
         <ListGroup className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
           {this.state.suggestions.map((suggestion) => (
             <ListGroup.Item
@@ -96,16 +64,6 @@ like typing on the keyboard
             See all cities
           </ListGroup.Item>
         </ListGroup>
-        {/* <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
-          {this.state.suggestions.map((suggestion) => (
-            <li key={suggestion} onClick={() => this.handleItemClicked(suggestion)}>
-              {suggestion}
-            </li>
-          ))}
-          <li onClick={() => this.handleItemClicked('all')}>
-            <b>See all cities</b>
-          </li>
-        </ul> */}
       </div>
     );
   }
