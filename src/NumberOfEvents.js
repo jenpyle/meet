@@ -11,6 +11,7 @@ class NumberOfEvents extends Component {
     this.setState({
       numberEvents: value,
     });
+    this.props.updateEventNumber(value);
   };
 
   render() {
@@ -27,8 +28,8 @@ class NumberOfEvents extends Component {
                 className="numEventInput"
                 type="number"
                 placeholder="Enter number of events to view"
-                defaultValue={numberEvents}
-                onChange={this.handleInputChanged}
+                value={numberEvents}
+                onChange={() => this.handleInputChanged}
               />
             </Col>
           </Form.Group>

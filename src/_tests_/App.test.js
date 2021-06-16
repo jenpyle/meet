@@ -79,5 +79,41 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(allEvents);
     AppWrapper.unmount();
   });
+  ////FEATURE 1////////////////////////////////////////////////////////////////////////////////////////
+
+  ////FEATURE 3////////////////////////////////////////////////////////////////////////////////////////
+  test('Changing the numberEvents state in NumberOfEvents should change the number state for App', () => {
+    AppWrapper = mount(<App />);
+    const NumberOfEventsWrapper2 = AppWrapper.find(NumberOfEvents);
+    const locations = extractLocations(mockData);
+    NumberOfEventsWrapper2.setState({ numberEvents: locations.length }); //mock data's length is 2
+    const eventObject = { target: { value: 1 } };
+    // NumberOfEventsWrapper2.find('.numEventInput').simulate('change', eventObject);
+    NumberOfEventsWrapper2.instance().handleInputChanged(eventObject);
+    expect(NumberOfEventsWrapper2.state('numberEvents')).toBe(1);
+    expect(AppWrapper.state('number')).toBe(1);
+    AppWrapper.unmount();
+  });
+
+  test('App passes "number" state as a prop to EventList', () => {
+    AppWrapper = mount(<App />);
+    const AppNumberState = AppWrapper.state('number');
+    expect(AppNumberState).not.toEqual(undefined); //important to precede next line to ensure props are passing correctly and not undefined
+    expect(AppWrapper.find(EventList).props().number).toEqual(AppNumberState); //checking that EventLists event prop is the same as events state from App
+    AppWrapper.unmount();
+  });
+
+  test('EventList renders correct number of events based on number prop from App', async () => {
+    AppWrapper = mount(<App />);
+    const allEvents = await getEvents();
+    AppWrapper.setState({ events: allEvents });
+    const EventListLength = AppWrapper.find(EventList).find('.EventList li').length;
+    expect(EventListLength).toEqual(2); //mockData.length is 2
+    AppWrapper.setState({ number: 1 }); //user changes number of events
+    expect(AppWrapper.find(EventList).props().number).toEqual(1); //number prop is passed to EventList
+    const EventListLength2 = AppWrapper.find(EventList).find('.EventList li').length;
+    expect(EventListLength2).toEqual(1); //correct number of events rendered in EventList after changing number prop in App
+    AppWrapper.unmount();
+  });
+  ////FEATURE 3////////////////////////////////////////////////////////////////////////////////////////
 });
-////FEATURE 1////////////////////////////////////////////////////////////////////////////////////////

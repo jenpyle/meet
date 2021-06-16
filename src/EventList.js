@@ -3,10 +3,11 @@ import Event from './Event'; // in src/EventList.js
 
 class EventList extends Component {
   render() {
-    const { events } = this.props;
+    const { events, number } = this.props;
+
     return (
       <ul className="EventList">
-        {events.map((event) => (
+        {events.slice(0, number).map((event) => (
           <li key={event.id}>
             <Event eventData={event} />
           </li>
