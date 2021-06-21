@@ -41,7 +41,7 @@ describe('<Event /> component', () => {
 
   test('Event is collapsed by default', () => {
     EventWrapper = mount(<Event eventData={mockData[0]} />);
-    expect(EventWrapper.find('.accordion').prop('defaultActiveKey')).toBeUndefined();
+    expect(EventWrapper.find('Accordion').prop('defaultActiveKey')).toBeUndefined();
   });
   ///How do I write these tests correctly?/////////////////////////////////////////////////////////////////////////
   // test('When Show Details is clicked, show more details(accordion expands)', () => {
