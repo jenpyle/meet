@@ -11,7 +11,7 @@ class NumberOfEvents extends Component {
     this.setState({
       numberEvents: value,
     });
-    this.props.updateEventNumber(value);
+    this.props.updateEventNumber(event.target.value);
   };
 
   render() {
@@ -27,6 +27,7 @@ class NumberOfEvents extends Component {
               <Form.Control
                 className="numEventInput"
                 type="number"
+                min="0"
                 placeholder="Enter number of events to view"
                 value={numberEvents}
                 onChange={this.handleInputChanged}
