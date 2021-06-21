@@ -47,13 +47,11 @@ class Event extends Component {
                   <Card.Body className="moreDetails">
                     <Card.Title>About Event</Card.Title>
                     <Card.Text>
-                      {eventData.description}{' '}
-                      <h6>
-                        Contact:
-                        <a href="mailto:{eventData.organizer.email}" target="_blank">
-                          {eventData.organizer.email}
-                        </a>
-                      </h6>
+                      {eventData.description}
+                      Contact:
+                      <a href="mailto:{eventData.organizer.email}" target="_blank" rel="noreferrer">
+                        {eventData.organizer.email}
+                      </a>
                       <Button variant="primary" href={eventData.htmlLink} target="_blank">
                         View in Google Calendar
                       </Button>

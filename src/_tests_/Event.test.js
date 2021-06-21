@@ -45,10 +45,12 @@ describe('<Event /> component', () => {
   });
   ///How do I write these tests correctly?/////////////////////////////////////////////////////////////////////////
   // test('When Show Details is clicked, show more details(accordion expands)', () => {
-  //   const accordion = shallow(<Event eventData={mockData[0]} />).find('Accordion');
+  //   // const accordion = shallow(<Event eventData={mockData[0]} />).find('Accordion');
+  //   // console.log('00000', accordion);
   //   EventWrapper = mount(<Event eventData={mockData[0]} />);
-  //   EventWrapper.find('.accordion .detailsButton').at(1).simulate('click');
-  //   expect(EventWrapper.find('.Event').at(1).hasClass('.show')).toEqual(true);
+  //   EventWrapper.find('.detailsButton').at(1).simulate('click');
+  //   console.log(EventWrapper.debug({ verbose: true }));
+  //   expect(EventWrapper.find('.Event').at(1).hasClass('show')).toEqual(true);
   // });
 
   // test('When Hide Details is clicked, details will collapse(accordion collapses)', () => {

@@ -88,8 +88,10 @@ describe('<App /> integration', () => {
     const locations = extractLocations(mockData);
     NumberOfEventsWrapper2.setState({ numberEvents: locations.length }); //mock data's length is 2
     const eventObject = { target: { value: 1 } };
-    // NumberOfEventsWrapper2.find('.numEventInput').simulate('change', eventObject);
-    NumberOfEventsWrapper2.instance().handleInputChanged(eventObject);
+    // console.log(NumberOfEventsWrapper2.debug({ verbose: true }));
+
+    NumberOfEventsWrapper2.find('.numEventInput').at(0).simulate('change', eventObject);
+    // NumberOfEventsWrapper2.instance().handleInputChanged(eventObject);
     expect(NumberOfEventsWrapper2.state('numberEvents')).toBe(1);
     expect(AppWrapper.state('number')).toBe(1);
     AppWrapper.unmount();

@@ -29,7 +29,7 @@ class NumberOfEvents extends Component {
                 type="number"
                 placeholder="Enter number of events to view"
                 value={numberEvents}
-                onChange={() => this.handleInputChanged}
+                onChange={this.handleInputChanged}
               />
             </Col>
           </Form.Group>
