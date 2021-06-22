@@ -45,19 +45,21 @@ defineFeature(feature, (test) => {
     });
     and('the list of suggested cities is showing', () => {
       AppWrapper.update();
+      console.log(AppWrapper.debug({ verbose: true }));
+      expect(AppWrapper.find('ListGroupItem')).toHaveLength(2); //2 because of the "See all cities" option
+
       // expect(AppWrapper.find('.suggestions .list-item')).toHaveLength(2); //2 because of the "See all cities" option
     });
     when('the user selects a city (e.g., “Berlin, Germany”) from the list', () => {
       AppWrapper.update();
-
-      // AppWrapper.find('.suggestions li').at(0).simulate('click');
+      AppWrapper.find('ListGroupItem').at(0).simulate('click');
     });
     then('their city should be changed to that city (i.e., “Berlin, Germany”)', () => {
       const CitySearchWrapper = AppWrapper.find(CitySearch);
-      // expect(CitySearchWrapper.state('query')).toBe('Berlin, Germany');
+      expect(CitySearchWrapper.state('query')).toBe('Berlin, Germany');
     });
     and('the user should receive a list of upcoming events in that city', () => {
-      // expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+      expect(AppWrapper.find('.EventList')).toHaveLength(1);
     });
   });
 });
