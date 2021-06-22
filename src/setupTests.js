@@ -7,3 +7,5 @@ import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17'; //you configure Enzyme to use the adapter. This code tells Enzyme to use the adapter for React 17, after which, it will be ready to use for developing
 
 Enzyme.configure({ adapter: new Adapter() });
+
+jest.setTimeout(30000);

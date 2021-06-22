@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Form, Row, Col, ListGroup } from 'react-bootstrap';
 
 class CitySearch extends Component {
   state = {
     query: '',
     suggestions: [],
+    showSuggestions: undefined,
   };
 
   handleInputChanged = (event) => {
@@ -20,23 +22,48 @@ like typing on the keyboard
   handleItemClicked = (suggestion) => {
     this.setState({
       query: suggestion,
+      showSuggestions: false,
     });
+    this.props.updateEvents(suggestion);
   };
 
   render() {
     return (
       <div className="CitySearch">
-        <input type="text" className="city" value={this.state.query} onChange={this.handleInputChanged} />
-        <ul className="suggestions">
+        <Form>
+          <Form.Group as={Row} controlId="formPlaintextPassword">
+            <Form.Label column md="6">
+              Search for events near you:
+            </Form.Label>
+            <Col md="6">
+              <Form.Control
+                type="text"
+                className="city"
+                placeholder="Search cities"
+                value={this.state.query}
+                onChange={this.handleInputChanged}
+                onFocus={() => {
+                  this.setState({ showSuggestions: true });
+                }}
+              />
+            </Col>
+          </Form.Group>
+        </Form>
+        <ListGroup className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
           {this.state.suggestions.map((suggestion) => (
-            <li key={suggestion} onClick={() => this.handleItemClicked(suggestion)}>
+            <ListGroup.Item
+              className="list-item"
+              action
+              key={suggestion}
+              onClick={() => this.handleItemClicked(suggestion)}
+            >
               {suggestion}
-            </li>
+            </ListGroup.Item>
           ))}
-          <li key="all">
-            <b>See all cities</b>
-          </li>
-        </ul>
+          <ListGroup.Item className="list-item" action onClick={() => this.handleItemClicked('all')}>
+            See all cities
+          </ListGroup.Item>
+        </ListGroup>
       </div>
     );
   }

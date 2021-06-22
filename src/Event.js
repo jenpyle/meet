@@ -1,42 +1,68 @@
 import React, { Component } from 'react';
+import { Container, Row, Col, Button, Card, Accordion } from 'react-bootstrap';
 
 class Event extends Component {
   state = {
-    showDetails: false,
     buttonLabel: 'Show Details',
   };
 
-  toggleShowDetails = () => {
-    this.setState({
-      showDetails: !this.state.showDetails,
-      buttonLabel: 'Show Details',
-    });
-
-    if (this.state.showDetails) {
+  toggleshowingDetails = () => {
+    if (this.state.buttonLabel === 'Show Details') {
       this.setState({
         buttonLabel: 'Hide Details',
+      });
+    } else {
+      this.setState({
+        buttonLabel: 'Show Details',
       });
     }
   };
   render() {
     const { eventData } = this.props;
-    const { showDetails, buttonLabel } = this.state;
+    const { buttonLabel } = this.state;
     return (
-      <div className="Event">
-        <h2 className="title">{eventData.summary}</h2>
-        <p className="details">
-          `Start: ${eventData.start.dateTime}, End: ${eventData.end.dateTime}, TimeZone: ${eventData.start.timeZone}`
-        </p>
-        <button className="detailsButton" onClick={this.toggleShowDetails}>
-          {buttonLabel}
-        </button>
-        {showDetails ? (
-          <div className="moreDetails">
-            `About Event\n ${eventData.htmlLink} <br></br> ${eventData.description} Contact: $
-            {eventData.organizer.email}`
-          </div>
-        ) : null}
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <Accordion>
+              <Card className="Event">
+                <Card.Header className="details">
+                  <h2 className="title">{eventData.summary}</h2>
+
+                  <div>Start: {eventData.start.dateTime}</div>
+                  <div> End: {eventData.end.dateTime}</div>
+                  <div>TimeZone: {eventData.start.timeZone}</div>
+
+                  <Accordion.Toggle
+                    as={Button}
+                    variant="link"
+                    eventKey="0"
+                    className="detailsButton"
+                    onClick={this.toggleshowingDetails}
+                  >
+                    {buttonLabel}
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body className="moreDetails">
+                    <Card.Title>About Event</Card.Title>
+                    <Card.Text>
+                      {eventData.description}
+                      Contact:
+                      <a href="mailto:{eventData.organizer.email}" target="_blank" rel="noreferrer">
+                        {eventData.organizer.email}
+                      </a>
+                      <Button variant="primary" href={eventData.htmlLink} target="_blank">
+                        View in Google Calendar
+                      </Button>
+                    </Card.Text>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

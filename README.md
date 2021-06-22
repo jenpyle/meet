@@ -1,5 +1,9 @@
 # meet
 Serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming event
+## Get project running
+Check test coverage: ```npm test -- --coverage```\
+Start project: ```npm start```
+
 ## App features, User stories, and Scenarios
 ### __FEATURE 1: FILTER EVENTS BY CITY__
 As a user,\

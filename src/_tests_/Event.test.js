@@ -1,7 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Event from '../Event'; // in src/__tests__/EventList.test.js
 import { mockData } from '../mock-data';
+import { createWaitForElement } from 'enzyme-wait';
+// console.log(EventWrapper.debug({ verbose: true }));
 
 ////FEATURE 2////////////////////////////////////////////////////////////////////////////////////////
 describe('<Event /> component', () => {
@@ -19,70 +21,66 @@ describe('<Event /> component', () => {
     expect(EventWrapper.find('.Event .title').text()).toBe(eventData.summary);
   });
 
-  test('Render basic Event details', () => {
-    expect(EventWrapper.find('.Event .details').text()).toBe(
-      'Start: ' +
-        eventData.start.dateTime +
-        '\nEnd: ' +
-        eventData.end.dateTime +
-        '\nTimeZone: ' +
-        eventData.start.timeZone
+  test('Render basic event details', () => {
+    expect(EventWrapper.find('.Event .details').text()).toContain(
+      eventData.start.dateTime,
+      eventData.end.dateTime,
+      eventData.start.timeZone
     );
   });
 
-  test('Event is collapsed by default', () => {
-    expect(EventWrapper.state('showDetails')).toBe(false);
+  test('MORE event details contents exist(hidden)', () => {
+    expect(EventWrapper.find('.Event .moreDetails').text()).toContain(
+      eventData.description,
+      eventData.organizer.email,
+      eventData.htmlLink
+    );
   });
 
   test('Event has a "show details" button', () => {
-    expect(EventWrapper.find('.detailsButton')).toHaveLength(1);
+    expect(EventWrapper.find('.detailsButton').at(0)).toHaveLength(1);
   });
 
-  test("Clicking 'Show Details' should change state of showDetails to TRUE", () => {
-    EventWrapper.setState({
-      showDetails: false,
-    });
-    EventWrapper.find('.detailsButton').simulate('click');
-    expect(EventWrapper.state('showDetails')).toBe(true);
+  test('Event is collapsed by default', () => {
+    EventWrapper = mount(<Event eventData={mockData[0]} />);
+    expect(EventWrapper.find('Accordion').prop('defaultActiveKey')).toBeUndefined();
   });
 
-  test('Render MORE Event details when showDetails is TRUE', () => {
-    EventWrapper.setState({
-      showDetails: true,
-    });
-    expect(EventWrapper.find('.Event .moreDetails').text()).toBe(
-      'About Event\n' + eventData.htmlLink + '\n' + eventData.description + '\nContact: ' + eventData.organizer.email
-    );
+  ///How do I write these tests correctly?/////////////////////////////////////////////////////////////////////////
+  test('When Show Details is clicked, show more details(accordion expands)', async () => {
+    const EventWrapper2 = mount(<Event eventData={mockData[0]} />);
+    await EventWrapper2.find('.Event .detailsButton').at(0).simulate('click');
+    expect(EventWrapper2.find('.Event').at(0).hasClass('show')).toEqual(true);
   });
 
-  test("Clicking 'Hide Details' should change state of showDetails to FALSE", () => {
-    EventWrapper.setState({
-      showDetails: true,
-    });
-    EventWrapper.find('.detailsButton').simulate('click');
-    expect(EventWrapper.state('showDetails')).toBe(false);
-  });
+  // test('When Show Details is clicked, show more details(accordion expands)', () => {
+  //   const EventWrapper2 = mount(<Event eventData={mockData[0]} />);
+  //   EventWrapper2.find('.Event .detailsButton').at(0).simulate('click');
+  //   return setTimeout(() => {
+  //     expect(EventWrapper2.find('.Event').at(0).hasClass('show')).toEqual(true);
+  //   }, 4000);
+  // });
 
-  test('When Show Details is FALSE, do NOT render more details', () => {
-    EventWrapper.setState({
-      showDetails: false,
-    });
-    expect(EventWrapper.find('.Event .moreDetails')).toHaveLength(0);
-  });
+  // test('When Hide Details is clicked, details will collapse(accordion collapses)', () => {
+  //   EventWrapper = mount(<Event eventData={mockData[0]} />);
+  //   EventWrapper.find('.accordion .detailsButton').at(1).simulate('click');
+  //   expect(EventWrapper.find('.Event').at(1).hasClass('.show')).toEqual(false);
+  // });
+  ////////////////////////////////////////////////////////////////////////////
 
   test('When Show Details is clicked, buttonLabel is set to "Hide Details"', () => {
     EventWrapper.setState({
-      showDetails: false,
+      buttonLabel: 'Show Details',
     });
-    EventWrapper.find('.detailsButton').simulate('click');
+    EventWrapper.find('.detailsButton').at(1).simulate('click');
     expect(EventWrapper.state('buttonLabel')).toBe('Hide Details');
   });
 
   test('When Hide Details is clicked, buttonLabel is set to "Show Details"', () => {
     EventWrapper.setState({
-      showDetails: true,
+      buttonLabel: 'Hide Details',
     });
-    EventWrapper.find('.detailsButton').simulate('click');
+    EventWrapper.find('.detailsButton').at(1).simulate('click');
     expect(EventWrapper.state('buttonLabel')).toBe('Show Details');
   });
 });

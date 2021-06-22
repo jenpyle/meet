@@ -1,10 +1,14 @@
 // The entry point of my build
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App'; //importing App.js
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import * as atatus from 'atatus-spa';
+atatus.config('90c69f2a2f1541daadb03d73eef68fe6').install();
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,3 +26,4 @@ serviceWorkerRegistration.unregister();
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+atatus.notify(new Error('Test Atatus Setup'));

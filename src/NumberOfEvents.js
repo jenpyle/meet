@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Form, Row, Col } from 'react-bootstrap';
 
 class NumberOfEvents extends Component {
   state = {
-    numberEvents: 32,
+    numberEvents: 5,
   };
 
   handleInputChanged = (event) => {
@@ -10,13 +11,30 @@ class NumberOfEvents extends Component {
     this.setState({
       numberEvents: value,
     });
+    this.props.updateEventNumber(event.target.value);
   };
 
   render() {
     const { numberEvents } = this.state;
     return (
       <div className="NumberOfEvents">
-        <input type="number" className="numEventInput" value={numberEvents} onChange={this.handleInputChanged} />
+        <Form>
+          <Form.Group as={Row} controlId="formPlaintextPassword">
+            <Form.Label column md="6">
+              Number of Events:
+            </Form.Label>
+            <Col md="6">
+              <Form.Control
+                className="numEventInput"
+                type="number"
+                min="0"
+                placeholder="Enter number of events to view"
+                value={numberEvents}
+                onChange={this.handleInputChanged}
+              />
+            </Col>
+          </Form.Group>
+        </Form>
       </div>
     );
   }
