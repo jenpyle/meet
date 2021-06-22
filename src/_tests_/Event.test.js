@@ -47,11 +47,11 @@ describe('<Event /> component', () => {
   });
 
   ///How do I write these tests correctly?/////////////////////////////////////////////////////////////////////////
-  // test('When Show Details is clicked, show more details(accordion expands)', async () => {
-  //   const EventWrapper2 = mount(<Event eventData={mockData[0]} />);
-  //   await EventWrapper2.find('.Event .detailsButton').at(0).simulate('click');
-  //   expect(EventWrapper2.find('.Event').at(0).hasClass('show')).toEqual(true);
-  // });
+  test('When Show Details is clicked, show more details(accordion expands)', async () => {
+    const EventWrapper2 = mount(<Event eventData={mockData[0]} />);
+    await EventWrapper2.find('.Event .detailsButton').at(0).simulate('click');
+    expect(EventWrapper2.find('.Event').at(0).hasClass('show')).toEqual(true);
+  });
 
   // test('When Show Details is clicked, show more details(accordion expands)', () => {
   //   const EventWrapper2 = mount(<Event eventData={mockData[0]} />);

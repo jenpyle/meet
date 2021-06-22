@@ -11,13 +11,14 @@ const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
 defineFeature(feature, (test) => {
   test('When user hasn’t searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
-    given('user hasn’t searched for any city', () => {}); //nothing happens so leave empty
     let AppWrapper;
+    given('user hasn’t searched for any city', () => {}); //nothing happens so leave empty
     when('the user opens the app', () => {});
     AppWrapper = mount(<App />); //using mount bc need App's children
     then('the user should see the list of upcoming events.', () => {
       AppWrapper.update(); //bc getting events is async
       expect(AppWrapper.find('.Event').hostNodes()).toHaveLength(mockData.length);
+      AppWrapper.unmount();
     });
   });
 
@@ -45,10 +46,7 @@ defineFeature(feature, (test) => {
     });
     and('the list of suggested cities is showing', () => {
       AppWrapper.update();
-      console.log(AppWrapper.debug({ verbose: true }));
       expect(AppWrapper.find('ListGroupItem')).toHaveLength(2); //2 because of the "See all cities" option
-
-      // expect(AppWrapper.find('.suggestions .list-item')).toHaveLength(2); //2 because of the "See all cities" option
     });
     when('the user selects a city (e.g., “Berlin, Germany”) from the list', () => {
       AppWrapper.update();
@@ -60,6 +58,7 @@ defineFeature(feature, (test) => {
     });
     and('the user should receive a list of upcoming events in that city', () => {
       expect(AppWrapper.find('.EventList')).toHaveLength(1);
+      AppWrapper.unmount();
     });
   });
 });

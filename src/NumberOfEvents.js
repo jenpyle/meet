@@ -3,7 +3,7 @@ import { Form, Row, Col } from 'react-bootstrap';
 
 class NumberOfEvents extends Component {
   state = {
-    numberEvents: 32,
+    numberEvents: 5,
   };
 
   handleInputChanged = (event) => {
