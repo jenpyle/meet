@@ -141,10 +141,10 @@ button.list-group-item.list-group-item-action {
   font-family: sans-serif;
 }
 
-.Alert {
+/* .Alert {
   position: fixed;
   top: 20px;
-}
+} */
 
 .data-vis-wrapper {
   display: flex;
@@ -261,3 +261,10 @@ button.list-group-item.list-group-item-action {
     transform: rotate(360deg);
   }
 } */
+
+div.form-group.row {
+  margin-bottom: 0px;
+}
+input#formPlaintextPassword {
+  height: 100%;
+}
