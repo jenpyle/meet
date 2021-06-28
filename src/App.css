@@ -141,11 +141,6 @@ button.list-group-item.list-group-item-action {
   font-family: sans-serif;
 }
 
-/* .Alert {
-  position: fixed;
-  top: 20px;
-} */
-
 .data-vis-wrapper {
   display: flex;
   align-items: center;

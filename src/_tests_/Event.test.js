@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import Event from '../Event'; // in src/__tests__/EventList.test.js
 import { mockData } from '../mock-data';
 import { createWaitForElement } from 'enzyme-wait';
+import { waitForState } from 'enzyme-async-helpers';
 // console.log(EventWrapper.debug({ verbose: true }));
 
 ////FEATURE 2////////////////////////////////////////////////////////////////////////////////////////
@@ -46,29 +47,7 @@ describe('<Event /> component', () => {
     expect(EventWrapper.find('Accordion').prop('defaultActiveKey')).toBeUndefined();
   });
 
-  ///How do I write these tests correctly?/////////////////////////////////////////////////////////////////////////
-  test('When Show Details is clicked, show more details(accordion expands)', async () => {
-    const EventWrapper2 = mount(<Event eventData={mockData[0]} />);
-    await EventWrapper2.find('.Event .detailsButton').at(0).simulate('click');
-    expect(EventWrapper2.find('.Event').at(0).hasClass('show')).toEqual(true);
-  });
-
-  // test('When Show Details is clicked, show more details(accordion expands)', () => {
-  //   const EventWrapper2 = mount(<Event eventData={mockData[0]} />);
-  //   EventWrapper2.find('.Event .detailsButton').at(0).simulate('click');
-  //   return setTimeout(() => {
-  //     expect(EventWrapper2.find('.Event').at(0).hasClass('show')).toEqual(true);
-  //   }, 4000);
-  // });
-
-  // test('When Hide Details is clicked, details will collapse(accordion collapses)', () => {
-  //   EventWrapper = mount(<Event eventData={mockData[0]} />);
-  //   EventWrapper.find('.accordion .detailsButton').at(1).simulate('click');
-  //   expect(EventWrapper.find('.Event').at(1).hasClass('.show')).toEqual(false);
-  // });
-  ////////////////////////////////////////////////////////////////////////////
-
-  test('When Show Details is clicked, buttonLabel is set to "Hide Details"', () => {
+  test('When Show Details is clicked, Accordion expands and buttonLabel is set to "Hide Details"', () => {
     EventWrapper.setState({
       buttonLabel: 'Show Details',
     });
@@ -76,7 +55,7 @@ describe('<Event /> component', () => {
     expect(EventWrapper.state('buttonLabel')).toBe('Hide Details');
   });
 
-  test('When Hide Details is clicked, buttonLabel is set to "Show Details"', () => {
+  test('When Hide Details is clicked, Accordion collapses and buttonLabel is set to "Show Details"', () => {
     EventWrapper.setState({
       buttonLabel: 'Hide Details',
     });
