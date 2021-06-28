@@ -46,13 +46,16 @@ class Event extends Component {
                 <Accordion.Collapse eventKey="0">
                   <Card.Body className="moreDetails">
                     <Card.Title>About Event</Card.Title>
+
                     <Card.Text>
                       {eventData.description}
-                      Contact:
-                      <a href="mailto:{eventData.organizer.email}" target="_blank" rel="noreferrer">
-                        {eventData.organizer.email}
-                      </a>
-                      <Button variant="primary" href={eventData.htmlLink} target="_blank">
+                      <Card.Subtitle>
+                        Contact:{' '}
+                        <a href="mailto:{eventData.organizer.email}" target="_blank" rel="noreferrer">
+                          {eventData.organizer.email}
+                        </a>
+                      </Card.Subtitle>
+                      <Button variant="primary" className="calendarLink" href={eventData.htmlLink} target="_blank">
                         View in Google Calendar
                       </Button>
                     </Card.Text>

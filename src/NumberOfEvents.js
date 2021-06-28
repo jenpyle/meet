@@ -19,7 +19,7 @@ class NumberOfEvents extends Component {
     const { numberEvents } = this.state;
     return (
       <div className="NumberOfEvents">
-        <Form>
+        <Form className="numberEventsInput">
           <Form.Group as={Row} controlId="formPlaintextPassword">
             {this.state.numberEvents >= 1 ? (
               <Form.Label column md="6">
