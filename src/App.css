@@ -103,15 +103,13 @@ button.list-group-item.list-group-item-action {
 
 /*Everything between this comment and the above commented code is written by me x*/
 
-.no-resize,
 .resize {
-  /* width: 100px; */
-  height: 5.5rem;
-  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
   color: #000;
-  /* float: center; */
-  /* margin-left: 10px; */
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .btn-primary {

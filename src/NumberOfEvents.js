@@ -22,11 +22,11 @@ class NumberOfEvents extends Component {
         <Form className="numberEventsInput">
           <Form.Group as={Row} controlId="formPlaintextPassword">
             {this.state.numberEvents >= 1 ? (
-              <Form.Label column md="6">
+              <Form.Label column md="6" className="resize">
                 Number of Events:
               </Form.Label>
             ) : (
-              <Form.Label column md="6">
+              <Form.Label column md="6" className="resize">
                 <ErrorAlert text="Set number from 1 to 32" />
               </Form.Label>
             )}
@@ -34,6 +34,7 @@ class NumberOfEvents extends Component {
               <Form.Control
                 className="numEventInput"
                 min="0"
+                max="32"
                 type="number"
                 placeholder="Enter number of events to view"
                 value={numberEvents}
