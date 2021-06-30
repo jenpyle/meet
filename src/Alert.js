@@ -30,6 +30,14 @@ class InfoAlert extends Alert {
     super(props);
     this.color = 'blue';
   }
+
+  getStyle = () => {
+    return {
+      color: this.color,
+      fontWeight: 'bold',
+      fontSize: '63%',
+    };
+  };
 }
 
 class ErrorAlert extends Alert {

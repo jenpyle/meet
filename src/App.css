@@ -80,6 +80,15 @@ input[type='number'] {
   background-color: #bcdcdb;
 } */
 
+.suggestions {
+  width: 85%;
+  position: absolute;
+  z-index: 2;
+  align-self: center;
+  justify-content: center;
+  box-shadow: 10px 10px 16px -12px rgb(0 0 0 / 75%);
+}
+
 button.list-group-item.list-group-item-action {
   width: 50%;
   align-self: flex-end;
@@ -93,6 +102,18 @@ button.list-group-item.list-group-item-action {
 }
 
 /*Everything between this comment and the above commented code is written by me x*/
+
+.no-resize,
+.resize {
+  /* width: 100px; */
+  height: 5.5rem;
+  border: 1px solid #000;
+  color: #000;
+  /* float: center; */
+  /* margin-left: 10px; */
+  font-size: 15px;
+}
+
 .btn-primary {
   color: white;
   background-color: darkmagenta;

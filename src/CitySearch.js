@@ -72,11 +72,11 @@ like typing on the keyboard
         <Form>
           <Form.Group as={Row} controlId="formPlaintextPassword">
             {this.state.infoText === '' ? (
-              <Form.Label column md="6">
+              <Form.Label column md="6" className="resize">
                 Search for events near you:
               </Form.Label>
             ) : (
-              <Form.Label column md="6">
+              <Form.Label column md="6" className="resize">
                 <InfoAlert text={this.state.infoText} />
               </Form.Label>
             )}
