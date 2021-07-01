@@ -86,7 +86,7 @@ input[type='number'] {
   z-index: 2;
   align-self: center;
   justify-content: center;
-  box-shadow: 10px 10px 16px -12px rgb(0 0 0 / 75%);
+  margin-left: 1.5rem;
 }
 
 button.list-group-item.list-group-item-action {
@@ -98,6 +98,9 @@ button.list-group-item.list-group-item-action {
   button.list-group-item.list-group-item-action {
     width: 100%;
     align-self: center;
+  }
+  .suggestions {
+    margin-left: unset;
   }
 }
 
