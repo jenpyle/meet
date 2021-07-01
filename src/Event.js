@@ -26,13 +26,15 @@ class Event extends Component {
           <Col>
             <Accordion>
               <Card className="Event">
-                <Card.Header className="details">
-                  <h2 className="title">{eventData.summary}</h2>
-
-                  <div>Start: {eventData.start.dateTime}</div>
-                  <div> End: {eventData.end.dateTime}</div>
-                  <div>TimeZone: {eventData.start.timeZone}</div>
-
+                <Card.Body className="details">
+                  <Card.Title className="title">{eventData.summary}</Card.Title>
+                  <Card.Text>
+                    Start: {eventData.start.dateTime}
+                    <br></br>
+                    End: {eventData.end.dateTime}
+                    <br></br>
+                    TimeZone: {eventData.start.timeZone}
+                  </Card.Text>
                   <Accordion.Toggle
                     as={Button}
                     variant="link"
@@ -42,7 +44,8 @@ class Event extends Component {
                   >
                     {buttonLabel}
                   </Accordion.Toggle>
-                </Card.Header>
+                </Card.Body>
+
                 <Accordion.Collapse eventKey="0">
                   <Card.Body className="moreDetails">
                     <Card.Title>About Event</Card.Title>
