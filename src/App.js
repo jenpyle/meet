@@ -3,6 +3,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import { WarningAlert } from './Alert';
 import { extractLocations, getEvents } from './api';
 import { Container, Row, Col } from 'react-bootstrap';
 import './nprogress.css';
@@ -12,6 +13,7 @@ class App extends Component {
     events: [],
     locations: [],
     number: 5,
+    offline: false,
   };
 
   componentDidMount() {
@@ -57,6 +59,9 @@ class App extends Component {
         <Row>
           <Col>
             <div className="App">
+              {/* {this.state.offline && <WarningAlert text="You are offline! These events have been loaded from the cache" />} */}
+              <WarningAlert text="You are offline! These events have been loaded from the cache" />
+
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
               <NumberOfEvents updateEventNumber={(value) => this.updateEventNumber(value)} />
               <EventList events={this.state.events} number={this.state.number} />

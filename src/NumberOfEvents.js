@@ -27,7 +27,7 @@ class NumberOfEvents extends Component {
               </Form.Label>
             ) : (
               <Form.Label column md="6" className="resize">
-                <ErrorAlert text="Set number from 1 to 32" />
+                <ErrorAlert text=" Set number from 1 to 32 " />
               </Form.Label>
             )}
             <Col md="6">

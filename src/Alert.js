@@ -36,6 +36,8 @@ class InfoAlert extends Alert {
       color: this.color,
       fontWeight: 'bold',
       fontSize: '63%',
+      background: 'rgba(169, 169, 169, .4)',
+      'border-radius': '10px',
     };
   };
 }
@@ -51,9 +53,27 @@ class ErrorAlert extends Alert {
       color: this.color,
       fontWeight: 'bold',
       fontSize: '75%',
+      background: 'rgba(169, 169, 169, .4)',
+      'border-radius': '5px',
     };
   };
 }
-export { ErrorAlert };
 
-export { InfoAlert };
+class WarningAlert extends Alert {
+  constructor(props) {
+    super(props);
+    this.color = 'yellow';
+  }
+
+  getStyle = () => {
+    return {
+      color: this.color,
+      fontWeight: 'bolder',
+      fontSize: '75%',
+      background: 'rgba(169, 169, 169, .6)',
+      'border-radius': '60px',
+    };
+  };
+}
+
+export { ErrorAlert, InfoAlert, WarningAlert };
