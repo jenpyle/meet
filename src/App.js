@@ -25,7 +25,11 @@ class App extends Component {
     getEvents().then((events) => {
       if (this.mounted) {
         /**look at componentWillUnmount */
-        this.setState({ events, locations: extractLocations(events) });
+        this.setState({
+          events,
+          locations: extractLocations(events),
+          // offline: navigator.onLine ? false : true,
+        });
       }
     });
   }
@@ -36,6 +40,7 @@ class App extends Component {
     use this boolean to update the state only if this.mounted is true
     */
     this.mounted = false;
+    // window.removeEventListener('offline');
   }
 
   updateEvents = (location) => {
@@ -43,25 +48,37 @@ class App extends Component {
       const locationEvents = location === 'all' ? events : events.filter((event) => event.location === location);
       this.setState({
         events: locationEvents,
+        // offline: navigator.onLine ? false : true,
       });
     });
   };
 
   updateEventNumber = (numberEvents) => {
+    console.log('navigator.onLine?=', navigator.onLine, '  this.state.offline=', this.state.offline);
     this.setState({
       number: numberEvents,
+      // offline: navigator.onLine ? false : true,
     });
   };
 
   render() {
+    let offlineAlertText = '';
+
+    if (!navigator.onLine) {
+      offlineAlertText = 'You are currently offline. Event list may not be current.';
+    }
     return (
       <Container>
         <Row>
           <Col>
             <div className="App">
-              {/* {this.state.offline && <WarningAlert text="You are offline! These events have been loaded from the cache" />} */}
-              <WarningAlert text="You are offline! These events have been loaded from the cache" />
-
+              <WarningAlert text={offlineAlertText} />
+              {/* {this.state.offline && (
+                <WarningAlert text="You are offline! These events have been loaded from the cache" />
+              )} */}
+              {/* {navigator.onLine ? null : (
+                <WarningAlert text="You are offline! These events have been loaded from the cache" />
+              )} */}
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
               <NumberOfEvents updateEventNumber={(value) => this.updateEventNumber(value)} />
               <EventList events={this.state.events} number={this.state.number} />
