@@ -4,9 +4,10 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { WarningAlert } from './Alert';
-import { extractLocations, getEvents } from './api';
+import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import { Container, Row, Col } from 'react-bootstrap';
 import './nprogress.css';
+import WelcomeScreen from './WelcomeScreen';
 
 class App extends Component {
   state = {
@@ -14,24 +15,39 @@ class App extends Component {
     locations: [],
     number: 5,
     offline: false,
+    showWelcomeScreen: undefined,
   };
 
-  componentDidMount() {
-    /**
+  //componentDidMount() {
+  /**
    * load events when the app loads.
     make the API call and save the initial data to state
    */
+  //   this.mounted = true;
+  //   getEvents().then((events) => {
+  //     if (this.mounted) {
+  //       /**look at componentWillUnmount */
+  //       this.setState({
+  //         events,
+  //         locations: extractLocations(events),
+  //       });
+  //     }
+  //   });
+  // }
+  async componentDidMount() {
     this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        /**look at componentWillUnmount */
-        this.setState({
-          events,
-          locations: extractLocations(events),
-          // offline: navigator.onLine ? false : true,
-        });
-      }
-    });
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({ events, locations: extractLocations(events) });
+        }
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -40,7 +56,6 @@ class App extends Component {
     use this boolean to update the state only if this.mounted is true
     */
     this.mounted = false;
-    // window.removeEventListener('offline');
   }
 
   updateEvents = (location) => {
@@ -48,7 +63,6 @@ class App extends Component {
       const locationEvents = location === 'all' ? events : events.filter((event) => event.location === location);
       this.setState({
         events: locationEvents,
-        // offline: navigator.onLine ? false : true,
       });
     });
   };
@@ -57,11 +71,11 @@ class App extends Component {
     console.log('navigator.onLine?=', navigator.onLine, '  this.state.offline=', this.state.offline);
     this.setState({
       number: numberEvents,
-      // offline: navigator.onLine ? false : true,
     });
   };
 
   render() {
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />;
     let offlineAlertText = '';
 
     if (!navigator.onLine) {
@@ -73,15 +87,15 @@ class App extends Component {
           <Col>
             <div className="App">
               <WarningAlert text={offlineAlertText} />
-              {/* {this.state.offline && (
-                <WarningAlert text="You are offline! These events have been loaded from the cache" />
-              )} */}
-              {/* {navigator.onLine ? null : (
-                <WarningAlert text="You are offline! These events have been loaded from the cache" />
-              )} */}
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
               <NumberOfEvents updateEventNumber={(value) => this.updateEventNumber(value)} />
               <EventList events={this.state.events} number={this.state.number} />
+              <WelcomeScreen
+                showWelcomeScreen={this.state.showWelcomeScreen}
+                getAccessToken={() => {
+                  getAccessToken();
+                }}
+              />
             </div>
           </Col>
         </Row>

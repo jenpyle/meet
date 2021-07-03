@@ -37,7 +37,7 @@ class InfoAlert extends Alert {
       fontWeight: 'bold',
       fontSize: '63%',
       background: 'rgba(169, 169, 169, .4)',
-      'border-radius': '10px',
+      'border-radius': '10dpx',
     };
   };
 }

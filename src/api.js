@@ -19,7 +19,7 @@ export const extractLocations = (events) => {
 /**This function takes the accessToken you found and checks whether it’s a valid
  * token or not. If it’s not, then you
  * follow the redirect logic and send the user to the Google Authorization screen. */
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
   const result = await fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`)
     .then((res) => res.json())
     .catch((error) => error.json());
