@@ -1,12 +1,11 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import NumberOfEvents from '../NumberOfEvents';
-import App from '../App';
 
 describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsWrapper;
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    NumberOfEventsWrapper = shallow(<NumberOfEvents updateEventNumber={() => {}} />);
   });
   test('Render NumberOfEvents text input', () => {
     expect(NumberOfEventsWrapper.find('.numEventInput')).toHaveLength(1);
