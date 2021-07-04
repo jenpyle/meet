@@ -15,6 +15,7 @@ o.svg"
               alt="Google sign-in"
             />
           </div>
+          <br></br>
           <button
             onClick={() => {
               props.getAccessToken();
@@ -24,10 +25,9 @@ o.svg"
           >
             <b>Sign in with google</b>
           </button>
-          Page 1
         </div>
       </div>
-      <a href="https://jenpyle.github.io/meet/privacy.html" rel="nofollow noopener">
+      <a href="https://YOUR_GITHUB_USERNAME.github.io/meet/privacy.html" rel="nofollow noopener">
         Privacy policy
       </a>
     </div>
