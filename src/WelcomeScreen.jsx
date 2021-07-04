@@ -15,7 +15,7 @@ o.svg"
               alt="Google sign-in"
             />
           </div>
-          <br></br>
+
           <button
             onClick={() => {
               props.getAccessToken();

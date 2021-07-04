@@ -1,9 +1,18 @@
+h1 {
+  margin-top: 5rem;
+}
+h4 {
+  margin-top: 5rem;
+  margin-bottom: 4rem;
+}
 .WelcomeScreen {
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
-  background: white;
+  right: 0;
+  left: 0;
+  background-image: linear-gradient(to right, Plum, LemonChiffon, aquamarine);
 }
 .login-button {
   color: #494949;
