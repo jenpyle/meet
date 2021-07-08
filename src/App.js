@@ -18,11 +18,11 @@ class App extends Component {
     showWelcomeScreen: undefined,
   };
 
-  //componentDidMount() {
-  /**
-   * load events when the app loads.
-    make the API call and save the initial data to state
-   */
+  // componentDidMount() {
+  //   /**
+  //  * load events when the app loads.
+  //   make the API call and save the initial data to state
+  //  */
   //   this.mounted = true;
   //   getEvents().then((events) => {
   //     if (this.mounted) {
@@ -36,17 +36,28 @@ class App extends Component {
   // }
   async componentDidMount() {
     this.mounted = true;
-    const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       getEvents().then((events) => {
         if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
+          this.setState({
+            events,
+            locations: extractLocations(events),
+          });
         }
       });
+    } else {
+      const accessToken = localStorage.getItem('access_token');
+      const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+      const searchParams = new URLSearchParams(window.location.search);
+      const code = searchParams.get('code');
+      this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+      if ((code || isTokenValid) && this.mounted) {
+        getEvents().then((events) => {
+          if (this.mounted) {
+            this.setState({ events, locations: extractLocations(events) });
+          }
+        });
+      }
     }
   }
 
@@ -75,7 +86,11 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className="App" />;
+    // if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    //   alert("It's a local server!");
+    // if (this.state.showWelcomeScreen === undefined) {
+    //   return <div className="App" />;
+    // }
     let offlineAlertText = '';
 
     if (!navigator.onLine) {
