@@ -105,6 +105,17 @@ button.list-group-item.list-group-item-action {
 }
 
 /*Everything between this comment and the above commented code is written by me x*/
+.main {
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+
+.graphs-header {
+  height: 5rem;
+  font-weight: bold;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
 
 .resize {
   display: flex;
