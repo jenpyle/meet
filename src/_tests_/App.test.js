@@ -1,11 +1,11 @@
+import { mount, shallow } from 'enzyme';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import App from '../App';
-import EventList from '../EventList';
-import CitySearch from '../CitySearch';
-import NumberOfEvents from '../NumberOfEvents';
-import { mockData } from '../mock-data';
-import { extractLocations, getEvents } from '../api';
+import { extractLocations, getEvents } from '../api/api';
+import App from '../components/App';
+import CitySearch from '../components/CitySearch';
+import EventList from '../components/EventList';
+import { mockData } from '../mock-data/mock-data';
+import NumberOfEvents from '../components/NumberOfEvents';
 
 ////FEATURE 1////////////////////////////////////////////////////////////////////////////////////////
 let AppWrapper;
@@ -88,10 +88,7 @@ describe('<App /> integration', () => {
     const locations = extractLocations(mockData);
     NumberOfEventsWrapper2.setState({ numberEvents: locations.length }); //mock data's length is 2
     const eventObject = { target: { value: 1 } };
-    // console.log(NumberOfEventsWrapper2.debug({ verbose: true }));
-
     NumberOfEventsWrapper2.find('.numEventInput').at(0).simulate('change', eventObject);
-    // NumberOfEventsWrapper2.instance().handleInputChanged(eventObject);
     expect(NumberOfEventsWrapper2.state('numberEvents')).toBe(1);
     expect(AppWrapper.state('number')).toBe(1);
     AppWrapper.unmount();
@@ -110,7 +107,7 @@ describe('<App /> integration', () => {
     const allEvents = await getEvents();
     AppWrapper.setState({ events: allEvents });
     const EventListLength = AppWrapper.find(EventList).find('.EventList li').length;
-    expect(EventListLength).toEqual(2); //mockData.length is 2
+    expect(EventListLength).toEqual(5); //mockData.length is 2
     AppWrapper.setState({ number: 1 }); //user changes number of events
     expect(AppWrapper.find(EventList).props().number).toEqual(1); //number prop is passed to EventList
     const EventListLength2 = AppWrapper.find(EventList).find('.EventList li').length;

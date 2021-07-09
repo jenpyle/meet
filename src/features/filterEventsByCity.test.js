@@ -1,10 +1,10 @@
-import { loadFeature, defineFeature } from 'jest-cucumber';
-import React from 'react';
 import { mount, shallow } from 'enzyme';
-import App from '../App';
-import { mockData } from '../mock-data';
-import CitySearch from '../CitySearch';
-import { extractLocations } from '../api';
+import { defineFeature, loadFeature } from 'jest-cucumber';
+import React from 'react';
+import { extractLocations } from '../api/api';
+import App from '../components/App';
+import CitySearch from '../components/CitySearch';
+import { mockData } from '../mock-data/mock-data';
 // console.log(CitySearchWrapper.debug({ verbose: true }));
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import { ErrorAlert } from './Alert';
 
 class NumberOfEvents extends Component {

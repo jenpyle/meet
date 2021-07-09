@@ -1,9 +1,7 @@
+import { mount, shallow } from 'enzyme';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import Event from '../Event'; // in src/__tests__/EventList.test.js
-import { mockData } from '../mock-data';
-import { createWaitForElement } from 'enzyme-wait';
-import { waitForState } from 'enzyme-async-helpers';
+import Event from '../components/Event'; // in src/__tests__/EventList.test.js
+import { mockData } from '../mock-data/mock-data';
 // console.log(EventWrapper.debug({ verbose: true }));
 
 ////FEATURE 2////////////////////////////////////////////////////////////////////////////////////////

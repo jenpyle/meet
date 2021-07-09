@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button, Card, Accordion } from 'react-bootstrap';
+import { Accordion, Button, Card, Col, Container, Row } from 'react-bootstrap';
 
 class Event extends Component {
   state = {

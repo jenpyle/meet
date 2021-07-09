@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, ListGroup } from 'react-bootstrap';
+import { Col, Form, ListGroup, Row } from 'react-bootstrap';
 import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {

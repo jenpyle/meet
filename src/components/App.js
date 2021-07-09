@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { CartesianGrid, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
+import { checkToken, extractLocations, getAccessToken, getEvents } from '../api/api';
 import '../css/App.css';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
-import NumberOfEvents from './NumberOfEvents';
-import { WarningAlert } from './Alert';
-import { extractLocations, getEvents, checkToken, getAccessToken } from '../api/api';
-import { Container, Row, Col } from 'react-bootstrap';
 import '../css/nprogress.css';
-import WelcomeScreen from './WelcomeScreen';
+import { WarningAlert } from './Alert';
+import CitySearch from './CitySearch';
 import EventGenre from './EventGenre';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import EventList from './EventList';
+import NumberOfEvents from './NumberOfEvents';
+import WelcomeScreen from './WelcomeScreen';
 
 class App extends Component {
   state = {
