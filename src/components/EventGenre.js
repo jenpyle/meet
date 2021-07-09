@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
 const EventGenre = ({ events }) => {
   const [data, setData] = useState([]);
+  const COLORS = ['#ff99c8', '#fcf6bd', '#d0f4de', '#a9def9', '#e4c1f9'];
 
   useEffect(() => {
     setData(() => getData());
   }, [events]);
-  // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-  // const COLORS = ['#70d6ff', '#ff70a6', '#ffd670', '#e9ff70', '#ff9770'];
-  const COLORS = ['#ff99c8', '#fcf6bd', '#d0f4de', '#a9def9', '#e4c1f9'];
-  // const COLORS = ['#ff0a54', '#ff5c8a', '#ff85a1', '#fbb1bd', '#f7cad0'];
+
   const getData = () => {
     const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
     const data = genres.map((genre) => {
@@ -37,7 +35,6 @@ const EventGenre = ({ events }) => {
             <Cell key={`cell-${index}`} fill={COLORS[index]} />
           ))}
         </Pie>
-        {/* <Legend align="center" height={36} /> */}
         <Legend layout="horizontal" align="center" verticalAlign="top"></Legend>
       </PieChart>
     </ResponsiveContainer>
