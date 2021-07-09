@@ -22,10 +22,6 @@ class Alert extends Component {
 }
 
 class InfoAlert extends Alert {
-  /**
-   *
-   * Shows the alert when infoText state(in CitySearch) contains text, otherwise it will not render
-   */
   constructor(props) {
     super(props);
     this.color = 'blue';

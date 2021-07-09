@@ -5,7 +5,6 @@ import { getEvents } from '../api/api';
 import App from '../components/App';
 import EventList from '../components/EventList';
 import NumberOfEvents from '../components/NumberOfEvents';
-// console.log(CitySearchWrapper.debug({ verbose: true }));
 
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
@@ -26,7 +25,6 @@ defineFeature(feature, (test) => {
     });
 
     then('a maximum of 5 events will appear', () => {
-      // AppWrapper.update(); //bc getting events is async
       expect(AppWrapper.find('.Event').length).toBeLessThanOrEqual(5);
       AppWrapper.unmount();
     });

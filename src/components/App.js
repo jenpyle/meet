@@ -22,9 +22,9 @@ class App extends Component {
 
   async componentDidMount() {
     /**
-   *load events when the app loads.
-    make the API call and save the initial data to state
-  */
+     *load events when the app loads.
+     *make the API call and save the initial data to state
+     */
     this.mounted = true;
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       getEvents().then((events) => {
@@ -53,9 +53,9 @@ class App extends Component {
 
   componentWillUnmount() {
     /*
-    to fix issue with unmounting before getEvents API call is finished, we
-    use this boolean to update the state only if this.mounted is true
-    */
+     *to fix issue with unmounting before getEvents API call is finished, we
+     *use this boolean to update the state only if this.mounted is true
+     */
     this.mounted = false;
   }
 
@@ -76,15 +76,9 @@ class App extends Component {
   };
 
   getData = () => {
-    /**Gets the number of events at locations
-   * uses the locations and events saved in your state from the Google Calendar API. 
-    You then map the locations and filter the events by each location to get the length 
-    of the resulting array. 
-   */
     const { locations, events } = this.state;
     const data = locations.map((location) => {
       const number = events.filter((event) => event.location === location).length;
-      /**split the location at the occurrence of a comma followed by a space ", ", which will return an array */
       const city = location.split(', ').shift();
       return { city, number };
     });
@@ -104,13 +98,11 @@ class App extends Component {
             <div className="App">
               <h1 className="main">Meet App</h1>
               <WarningAlert text={offlineAlertText} />
-
               <CitySearch locations={locations} updateEvents={this.updateEvents} />
               <NumberOfEvents updateEventNumber={(value) => this.updateEventNumber(value)} />
               <h3 className="graphs-header">Events in each city:</h3>
               <div className="data-vis-wrapper">
                 <EventGenre events={events} />
-
                 <ResponsiveContainer height={400}>
                   <ScatterChart
                     margin={{

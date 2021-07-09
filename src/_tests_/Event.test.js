@@ -1,17 +1,14 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import Event from '../components/Event'; // in src/__tests__/EventList.test.js
+import Event from '../components/Event';
 import { mockData } from '../mock-data/mock-data';
-// console.log(EventWrapper.debug({ verbose: true }));
 
-////FEATURE 2////////////////////////////////////////////////////////////////////////////////////////
 describe('<Event /> component', () => {
   let eventData, EventWrapper;
   beforeAll(() => {
     eventData = mockData[0];
     EventWrapper = shallow(<Event eventData={mockData[0]} />);
   });
-
   test('Render the Event element', () => {
     expect(EventWrapper.find('.Event')).toHaveLength(1);
   });

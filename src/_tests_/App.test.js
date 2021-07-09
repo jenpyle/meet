@@ -7,10 +7,8 @@ import EventList from '../components/EventList';
 import { mockData } from '../mock-data/mock-data';
 import NumberOfEvents from '../components/NumberOfEvents';
 
-////FEATURE 1////////////////////////////////////////////////////////////////////////////////////////
 let AppWrapper;
 describe('<App /> component', () => {
-  //use describe for making a scope
   beforeAll(() => {
     AppWrapper = shallow(<App />);
   });
@@ -21,15 +19,12 @@ describe('<App /> component', () => {
   test('render CitySearch component', () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1);
   }); //test that the component CitySearch exists
-  ////FEATURE 1////////////////////////////////////////////////////////////////////////////////////////
-  ////FEATURE 3////////////////////////////////////////////////////////////////////////////////////////
+
   test('render NumberOfEvents component', () => {
     expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
   });
-  ////FEATURE 3////////////////////////////////////////////////////////////////////////////////////////
 });
 
-////FEATURE 1////////////////////////////////////////////////////////////////////////////////////////
 describe('<App /> integration', () => {
   beforeEach(() => {
     AppWrapper = mount(<App />);
@@ -41,6 +36,7 @@ describe('<App /> integration', () => {
     expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState); //checking that EventLists event prop is the same as events state from App
     AppWrapper.unmount();
   });
+
   test('App passes "locations" state as a prop to CitySearch', () => {
     AppWrapper = mount(<App />);
     const AppLocationsState = AppWrapper.state('locations');
@@ -48,6 +44,7 @@ describe('<App /> integration', () => {
     expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
     AppWrapper.unmount();
   });
+
   test('get list of events matching the city selected by the user', async () => {
     AppWrapper = mount(<App />);
     const CitySearchWrapper = AppWrapper.find(CitySearch);
@@ -71,6 +68,7 @@ describe('<App /> integration', () => {
      */
     AppWrapper.unmount();
   });
+
   test('get list of all events when user selects "See all cities"', async () => {
     AppWrapper = mount(<App />);
     const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions .list-item');
@@ -79,9 +77,7 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(allEvents);
     AppWrapper.unmount();
   });
-  ////FEATURE 1////////////////////////////////////////////////////////////////////////////////////////
 
-  ////FEATURE 3////////////////////////////////////////////////////////////////////////////////////////
   test('Changing the numberEvents state in NumberOfEvents should change the number state for App', () => {
     AppWrapper = mount(<App />);
     const NumberOfEventsWrapper2 = AppWrapper.find(NumberOfEvents);
@@ -114,5 +110,4 @@ describe('<App /> integration', () => {
     expect(EventListLength2).toEqual(1); //correct number of events rendered in EventList after changing number prop in App
     AppWrapper.unmount();
   });
-  ////FEATURE 3////////////////////////////////////////////////////////////////////////////////////////
 });

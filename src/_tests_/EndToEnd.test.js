@@ -29,8 +29,6 @@ describe('Filter events by city', () => {
   test('User should see a list of suggestions when they search for a city', async () => {
     await page.type('.city', 'Berlin', { delay: 100 }); // Types slower, like a user
     const List = await page.$('.suggestions');
-
-    // expect(List).toHaveLength(2);
   });
 
   test('User can select a city from the suggested list', async () => {

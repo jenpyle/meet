@@ -14,14 +14,14 @@ class CitySearch extends Component {
   }
 
   handleInputChanged = (event) => {
-    /*changes state of query and suggestions on change
-like typing on the keyboard
-  */
     const value = event.target.value;
     this.setState({ showSuggestions: true });
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-    }); /**filter the state of suggestions and use the result as the state’s new value */
+    });
+    /*
+     *filter the state of suggestions and use the result as the state’s new value
+     */
     this.setState({ query: value, suggestions });
     if (suggestions.length === 0) {
       this.setState({
