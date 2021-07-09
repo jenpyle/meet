@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../css/App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { WarningAlert } from './Alert';
-import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
-import { Container, Row, Col, Form } from 'react-bootstrap';
-import './nprogress.css';
+import { extractLocations, getEvents, checkToken, getAccessToken } from '../api/api';
+import { Container, Row, Col } from 'react-bootstrap';
+import '../css/nprogress.css';
 import WelcomeScreen from './WelcomeScreen';
 import EventGenre from './EventGenre';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';

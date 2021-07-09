@@ -2,11 +2,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
-import App from './App'; //importing App.js
+import './css/index.css';
+import App from './components/App'; //importing App.js
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-// import * as serviceWorker from './service-worker';
 import reportWebVitals from './reportWebVitals';
 import * as atatus from 'atatus-spa';
 
@@ -29,5 +27,3 @@ serviceWorkerRegistration.register();
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 atatus.config('51ec6f3cfee249b5814f2bf3b1417d8b').install();
-// notify();
-// atatus.notify(new Error('Test Atatus Setup'));
