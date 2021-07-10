@@ -1,8 +1,63 @@
-# meet
+# Meet App
 Serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming event
-## Get project running
-Check test coverage: ```npm test -- --coverage```\
-Start project: ```npm start```
+
+![Image of Main screen](./public/main.PNG)
+
+### Install Dependencies
+
+```
+npm install
+```
+
+### Run
+
+```
+npm run start
+```
+
+### Deploy
+
+```
+npm run deploy
+```
+### Run Tests
+
+```
+npm run test
+```
+
+### Check Test Coverage
+
+```
+npm test -- --coverage
+```
+## Key Features
+
+- Filter events by city.
+- Show/hide event details.
+- Specify number of events.
+- Use the app when offline.
+- Add an app shortcut to the home screen.
+- View a chart showing the number of upcoming events by city.
+
+## Detailed Project Description
+This single-page React application was built using [Create-React-App](https://reactjs.org/docs/create-a-new-react-app.html), which streamlined the setup process, as it included all build tools and files needed for deploying the app.
+
+This particular project was centered around using Test Driven Development(TDD), writing unit tests before implimenting any logic. This first involved converting feature requirements into user stories, which were further broken down into test scenarios using Behavior-Driven Development’s Gherkin syntax. Finally, tests were written based off of these scenarios which could then follow the TDD process:
+1. (Re-)Write a test
+2. Test fails
+3. Implement a fix
+4. Test passes
+5. Clean up code
+6. Repeat
+
+Through using the TDD approach, these tests informed the way in which code for each feature was developed, allowing for an optimal architecture for this app.
+
+Another important component of this project is its process of retrieving calendar event data. Meet App makes use of a "serverless" authentication service([auth-server](https://github.com/jenpyle/meet/tree/main/auth-server)) which interacts with an external Google Calendar API. This API, which provides the event data, is a protected Google Calendar API produced by CareerFoundry. As it is a protected API, obtaining a valid OAuth2 token is necessary in order to access its data. This is where the serverless functions come in, generating the OAuth2 token through a series of 3 functions. This process begins when a new user navigates to the app, automatically making a request to the API. The authentication process starts with the API confirming authorization status via checking if the user's local storage contains a valid token or authorization code, and if neither are found, the API redirects the user to a Google authorization screen. After the user signs into a Google account, the API sends an authorization code to the user's local storage and subsequently redirects the user to the main page. This authorization code is sent back to the serverless functions to first get validated and then be exchanged for an access token. After this, the user can finally gain access to the API and view the calendar event data. 
+
+The serverless functions are hosted on AWS Lambda and were set up and deployed using the Serverless Toolkit and the “aws-nodejs” template, the functions can be [viewed here](https://github.com/jenpyle/meet/blob/main/auth-server/handler.js).  Each function is deployed individually in the AWS cloud every time a new user gets authorized. Additionally, these functions were initally tested on a static HTML site set up using a Local Node.js HTTP Server made with Node’s built-in “http-server” package. A live version of the static site can be [visited here](https://coach-courses-us.s3.amazonaws.com/exercises/1114/39917/617dc3978f89f7a2ddd024d5102b08a5/test-auth-server.html), and my individual code can be [viewed here](https://github.com/jenpyle/meet/blob/main/test/test-auth-server.html).
+
+
 
 ## App features, User stories, and Scenarios
 ### __FEATURE 1: FILTER EVENTS BY CITY__
