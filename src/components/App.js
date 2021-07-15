@@ -20,6 +20,17 @@ class App extends Component {
     showWelcomeScreen: undefined,
   };
 
+  loadEvents = () => {
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events,
+          locations: extractLocations(events),
+        });
+      }
+    });
+  };
+
   async componentDidMount() {
     /**
      *load events when the app loads.
@@ -27,14 +38,7 @@ class App extends Component {
      */
     this.mounted = true;
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      getEvents().then((events) => {
-        if (this.mounted) {
-          this.setState({
-            events,
-            locations: extractLocations(events),
-          });
-        }
-      });
+      this.loadEvents();
     } else {
       const accessToken = localStorage.getItem('access_token');
       const isTokenValid = (await checkToken(accessToken)).error ? false : true;
@@ -42,11 +46,7 @@ class App extends Component {
       const code = searchParams.get('code');
       this.setState({ showWelcomeScreen: !(code || isTokenValid) });
       if ((code || isTokenValid) && this.mounted) {
-        getEvents().then((events) => {
-          if (this.mounted) {
-            this.setState({ events, locations: extractLocations(events) });
-          }
-        });
+        this.loadEvents();
       }
     }
   }
