@@ -1,5 +1,5 @@
 # Meet App
-[Serverless](#serverless-and-api), progressive web application [(PWA)](#progressive-web-application) built with React using a test-driven development [(TDD)](#testing) technique. The application uses the Google Calendar API to fetch upcoming events. See the [Detailed Project Description](#detailed-project-description) section for more information
+[Serverless](#serverless-and-api), progressive web application [(PWA)](#progressive-web-application) built with React using a test-driven development [(TDD)](#testing) technique. This application uses the Google Calendar API to fetch upcoming events. See the [Detailed Project Description](#detailed-project-description) section for more information
 
 ![Image of Main screen](./public/main.PNG)
 
