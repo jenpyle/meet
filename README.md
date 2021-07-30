@@ -1,5 +1,7 @@
 # Meet App
-[Serverless](#serverless-and-api), progressive web application [(PWA)](#progressive-web-application) built with React using a test-driven development [(TDD)](#testing) technique. This application uses the Google Calendar API to fetch upcoming events. See the [Detailed Project Description](#detailed-project-description) section for more information
+[Serverless](#serverless-and-api), progressive web application [(PWA)](#progressive-web-application) built with React using a test-driven development [(TDD)](#testing) technique. This application uses the Google Calendar API to fetch upcoming events. Live at: https://jenpyle.github.io/meet/
+
+**See the [Detailed Project Description](#detailed-project-description) below for more information**
 
 ![Image of Main screen](./public/main.PNG)
 
@@ -79,9 +81,7 @@ Other smaller features were implimented throughout this project such as a short 
 
 ## Features, User stories, and Scenarios
 ### __FEATURE 1: FILTER EVENTS BY CITY__
-As a user,\
-I should be able to filter events by city\
-So that I can see the list of events that take place in that city
+*As a user, I should be able to filter events by city, so that I can see the list of events that take place in that city*
 
 __SCENARIO 1: WHEN USER HASN’T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM ALL CITIES.__\
 __Given__ user hasn’t searched for any city\
@@ -97,9 +97,7 @@ __When__ the user selects a city (e.g., “Berlin, Germany”) from the list\
 __Then__ their city should be changed to that city (i.e., “Berlin, Germany”). And the user should receive a list of upcoming events in that city
 
 ### __FEATURE 2: SHOW/HIDE AN EVENT’S DETAILS__
-As a user,\
-I should be able to show or hide an event’s details\
-So that I can easily browse through events and choose when to view more detailed information\
+*As a user, I should be able to show or hide an event’s details, so that I can easily browse through events and choose when to view more detailed information*
 
 __Scenario 1: An event element is collapsed by default__\
 __Given__ the list of events has been loaded\
@@ -115,9 +113,7 @@ __When__ user clicks on “Hide details” button for an event\
 __Then__ the event element will be collapsed to hide the event details
 
 ### __FEATURE 3: SPECIFY NUMBER OF EVENTS__
-As a user,\
-I should be able to specify the number of events\
-So that I can choose how many events I want to browse through\
+*As a user, I should be able to specify the number of events, so that I can choose how many events I want to browse through*
 
 __Scenario 1: When user hasn’t specified a number, 32 is the default number__\
 __Given__ the main view has been loaded\
@@ -129,9 +125,7 @@ __When__ the number of events is set to a specific range\
 __Then__ a maximum of the specified number of events will appear
 
 ### __FEATURE 4: USE THE APP WHEN OFFLINE__
-As a user,\
-I should be able to use the app when offline\
-So that I can use the app even when internet is not available\
+*As a user, I should be able to use the app when offline, so that I can use the app even when internet is not available*
 
 __Scenario 1: Show cached data when there’s no internet connection__\
 __Given__ the main view of a city has previously been loaded\
@@ -140,13 +134,12 @@ __Then__ the cached data of the previously viewed city will be loaded\
 __Scenario 2: Show error when user changes the settings (city, time range)__\
 __Given__ the user did not have internet access\
 __When__ the user attempts to change the settings\
-__Then__ an error message will appear\
+__Then__ an error message will appear
 
 ### __FEATURE 5: DATA VISUALIZATION__
-As a user,\
-I should be able to visualize the available event data\
-So that I can easily compare how eventful each city is\
+*As a user, I should be able to visualize the available event data, so that I can easily compare how eventful each city is*
+
 __Scenario 1: Show a chart with the number of upcoming events in each city__\
 __Given__ the user has opened the main view\
 __When__ the user has clicked on the event chart button\
-__Then__ a graphic with a chart that shows the number of upcoming events in each city will appear\
+__Then__ a graphic with a chart that shows the number of upcoming events in each city will appear
