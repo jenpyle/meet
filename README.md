@@ -1,5 +1,7 @@
 # Meet App
-[Serverless](#serverless-and-api), progressive web application [(PWA)](#progressive-web-application) built with React using a test-driven development [(TDD)](#testing) technique. This application uses the Google Calendar API to fetch upcoming events. Live at: https://jenpyle.github.io/meet/
+[Serverless](#serverless-and-api), progressive web application [(PWA)](#progressive-web-application) built with React using a test-driven development [(TDD)](#testing) technique. This application uses the Google Calendar API to fetch upcoming events. 
+
+Live at: https://jenpyle.github.io/meet/
 
 **See the [Detailed Project Description](#detailed-project-description) below for more information**
 
